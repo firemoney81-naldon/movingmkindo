@@ -1,23 +1,608 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <title>Home</title>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
-    <!--
-      Need a visual blank slate?
-      Remove all code in `styles.css`!
-    -->
-    <link rel="stylesheet" href="styles.css" />
-    <script type="module" src="script.js"></script>
-  </head>
-  <body>
-    <nav>
-      <a href="/" aria-current="page">Home</a>
-      <a href="/page2.html">Other page</a>
-    </nav>
+
+    <!-- Schema.org 마크업 (SEO 최적화) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "MovingService",
+      "name": "노원구 포장이사 전문",
+      "url": "https://yourdomain.com",
+      "areaServed": {
+        "@type": "City",
+        "name": "노원구"
+      },
+      "provider": {
+        "@type": "Organization",
+        "name": "노원구 이사 견적 비교 센터",
+        "url": "https://yourdomain.com",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "노원구",
+          "addressRegion": "서울"
+        }
+      },
+      "description": "노원구 포장이사 전문 업체 비교, 비용 견적 플랫폼입니다. 상계동, 중계동, 하계동 지역 특화 서비스를 제공하며, 합리적인 비용으로 안전하고 편리한 이사를 약속드립니다.",
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "노원구 이사 서비스 종류",
+        "itemListElement": [
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Product",
+              "name": "프리미엄 포장이사"
+            },
+            "price": "500000",
+            "priceCurrency": "KRW",
+            "description": "포장, 운송, 정리, 청소까지 모든 것을 업체가 책임지는 최고급 노원구 포장이사 서비스"
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Product",
+              "name": "반포장이사"
+            },
+            "price": "350000",
+            "priceCurrency": "KRW",
+            "description": "큰 짐 포장 및 운송은 업체가, 잔짐은 고객이 직접 정리하는 노원구 맞춤 이사 서비스"
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Product",
+              "name": "원룸/소형 이사"
+            },
+            "price": "200000",
+            "priceCurrency": "KRW",
+            "description": "노원구 원룸 거주자를 위한 경제적이고 신속한 이사 서비스"
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Product",
+              "name": "사무실/기업 이사"
+            },
+            "price": "700000",
+            "priceCurrency": "KRW",
+            "description": "노원구 지역 기업체를 위한 사무실 이전 및 서류 운반 전문 서비스"
+          }
+        ]
+      }
+    }
+    </script>
+
+    <!-- Google Fonts 및 CSS 스타일 -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: "Noto Sans KR", sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.8;
+            background-color: #f7f9fc; /* 부드러운 배경색 */
+            color: #333;
+            word-break: keep-all; /* 한글 단어 단위 줄바꿈 */
+        }
+        header {
+            background-color: #1a5c8e; /* 깊은 남색 계열 */
+            color: white;
+            padding: 3rem 1rem;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+        }
+        header h1 {
+            font-size: 2.8rem;
+            font-weight: 800;
+            margin: 0.5rem 0 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+        header p {
+            font-size: 1.2rem;
+            font-weight: 300;
+        }
+        nav ul {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            gap: 2.5rem;
+            margin: 1rem 0 0;
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease, transform 0.3s ease;
+            font-size: 1.1rem;
+        }
+        nav a:hover {
+            color: #ffcc66; /* 밝은 노란색 */
+            transform: translateY(-2px);
+        }
+        main {
+            max-width: 1100px;
+            margin: 3rem auto;
+            padding: 0 2rem;
+            background-color: white;
+            box-shadow: 0 0 20px rgba(0,0,0,0.08);
+            border-radius: 12px;
+        }
+        section {
+            padding: 2.5rem 0;
+            border-bottom: 1px dashed #e0e0e0;
+        }
+        section:last-child {
+            border-bottom: none;
+        }
+        h2 {
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: #1a5c8e;
+            margin-top: 0;
+            padding-bottom: 1rem;
+            border-bottom: 4px solid #e0efff;
+        }
+        h3 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #3a7caf; /* 파란색 계열 강조 */
+            margin-top: 2rem;
+        }
+        p {
+            font-size: 1.05rem;
+            text-align: justify;
+            margin-bottom: 1.5rem;
+        }
+        .highlight {
+            font-weight: 700;
+            color: #d9480f; /* 주황색 강조 */
+        }
+        .local-keywords {
+            margin: 2rem 0;
+            background-color: #fcfcfc;
+            border: 1px solid #eee;
+            padding: 1.5rem;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            line-height: 2;
+        }
+        .local-keywords span {
+            display: inline-block;
+            margin-right: 1rem;
+            padding: 0.3rem 0.6rem;
+            background-color: #e6f7ff;
+            color: #0077c2;
+            border-radius: 4px;
+            font-weight: 500;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 2rem 0;
+            background-color: #fefefe;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            border-radius: 8px;
+        }
+        th, td {
+            padding: 1.2rem;
+            border: 1px solid #e0e0e0;
+            text-align: center;
+        }
+        th {
+            background-color: #1a5c8e;
+            color: white;
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+        tr:nth-child(even) {
+            background-color: #f8f8f8;
+        }
+        .cta-button {
+            display: block; /* 블록 요소로 변경하여 넓은 영역 차지 */
+            background-color: #ff6600; /* 주황색 CTA 버튼 */
+            color: white;
+            font-weight: 700;
+            padding: 1.5rem 3rem;
+            border-radius: 8px;
+            text-decoration: none;
+            margin: 3rem 0;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            text-align: center;
+            font-size: 1.3rem;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+        .cta-button:hover {
+            background-color: #e65c00;
+            transform: translateY(-2px);
+        }
+        .faq-accordion dt {
+            font-weight: 700;
+            margin-top: 1.5rem;
+            cursor: pointer;
+            color: #1a5c8e;
+            background-color: #f0f8ff; /* 연한 하늘색 배경 */
+            padding: 1.2rem;
+            border-left: 5px solid #1a5c8e;
+            transition: background-color 0.3s ease;
+            border-radius: 4px;
+        }
+        .faq-accordion dt:hover {
+            background-color: #e6f2ff;
+        }
+        .faq-accordion dd {
+            margin: 0.5rem 0 1.5rem 1.5rem;
+            padding: 1rem;
+            border-left: 2px dashed #ccc;
+            background-color: #fdfdfd;
+            border-radius: 4px;
+            display: none;
+        }
+        .faq-accordion dt.active + dd {
+            display: block;
+        }
+        .external-link {
+            display: inline-block;
+            color: #0066cc;
+            font-weight: 500;
+            margin-top: 1rem;
+            text-decoration: underline;
+            font-size: 0.9rem;
+        }
+        /* 견적 신청 폼 스타일 */
+        .quote-form-container {
+            background-color: #eef7ff;
+            padding: 2.5rem;
+            border-radius: 12px;
+            margin: 3rem 0;
+        }
+        .quote-form-container h3 {
+            text-align: center;
+            color: #1a5c8e;
+        }
+        .quote-form-container form {
+            display: grid;
+            gap: 1.5rem;
+        }
+        .quote-form-container label {
+            font-weight: 600;
+            color: #444;
+        }
+        .quote-form-container input[type="text"],
+        .quote-form-container input[type="tel"],
+        .quote-form-container input[type="date"],
+        .quote-form-container select,
+        .quote-form-container textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            box-sizing: border-box;
+            font-size: 1rem;
+        }
+        .quote-form-container button[type="submit"] {
+            background-color: #28a745;
+            color: white;
+            padding: 1rem;
+            border: none;
+            border-radius: 6px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .quote-form-container button[type="submit"]:hover {
+            background-color: #218838;
+        }
+        footer {
+            text-align: center;
+            padding: 2rem;
+            font-size: 0.9rem;
+            color: #777;
+            background-color: #eef3f7;
+            margin-top: 3rem;
+            border-top: 1px solid #d0dbe4;
+        }
+        /* 통계 그래프 시뮬레이션 CSS */
+        .chart-container {
+            display: flex;
+            justify-content: space-around;
+            align-items: flex-end;
+            margin: 3rem 0;
+            padding: 1rem;
+            border-bottom: 2px solid #ccc;
+        }
+        .chart-bar {
+            width: 15%;
+            background-color: #3a7caf;
+            text-align: center;
+            color: white;
+            font-weight: 600;
+            border-radius: 4px 4px 0 0;
+            position: relative;
+        }
+        .chart-label {
+            position: absolute;
+            bottom: -30px;
+            width: 100%;
+            font-size: 0.9rem;
+            color: #555;
+        }
+        .bar1 { height: 100px; }
+        .bar2 { height: 140px; background-color: #ff8c00; }
+        .bar3 { height: 80px; }
+        .bar4 { height: 120px; }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>노원구 포장이사 견적, 비용 비교 | 안심하고 맡길 수 있는 이사 업체 추천</h1>
+        <p>노원구민을 위한 가장 합리적이고 안전한 이사 솔루션. 2026년 이사 트렌드에 맞춰 노원구 맞춤형 포장이사 견적을 제공합니다.</p>
+        <nav>
+            <ul>
+                <li><a href="#노원구특징">노원구 지역 특징</a></li>
+                <li><a href="#서비스종류">서비스 종류</a></li>
+                <li><a href="#비용분석">비용 분석 및 절약 팁</a></li>
+                <li><a href="#업체선택기준">업체 선택 기준</a></li>
+                <li><a href="#자주묻는질문">자주 묻는 질문</a></li>
+                <li><a href="#무료견적">무료 견적 신청</a></li>
+            </ul>
+        </nav>
+    </header>
+
     <main>
-      <h1>Home page</h1>
+        <section id="노원구특징">
+            <h2>노원구 포장이사, 왜 노원구 전문 업체에 맡겨야 할까요?</h2>
+            <p><strong>노원구 포장이사</strong>를 계획하고 계시다면, 노원구 지역의 특성을 잘 이해하는 전문 이사 업체를 선택하는 것이 중요합니다. 노원구는 <span class="highlight">상계동, 중계동, 하계동</span> 등 대규모 아파트 단지가 밀집해 있으며, 특히 <span class="highlight">상계 주공아파트, 중계동 청구아파트</span>와 같이 다양한 형태의 주거 환경이 공존합니다. 또한, <span class="highlight">공릉동</span>이나 <span class="highlight">월계동</span> 일부 지역은 주택가와 좁은 골목길이 많아 이사 작업 시 <span class="highlight">사다리차 사용</span> 여부와 작업 환경이 매우 까다롭습니다. 이러한 지역적 특성을 고려하지 않고 이사를 진행할 경우, 이사 당일 예상치 못한 추가 비용이 발생하거나 작업 시간이 지연되는 문제가 생길 수 있습니다.</p>
+            <p>저희 **노원구 포장이사 견적 비교 센터**는 <span class="highlight">노원역, 하계역, 마들역, 중계역</span> 인근을 포함하여 노원구 전역의 지형 및 아파트 단지 특성을 완벽히 파악하고 있는 제휴 업체들로 구성되어 있습니다. 단순히 짐을 옮기는 것을 넘어, <span class="highlight">노원구민</span>의 이사 환경에 최적화된 맞춤형 솔루션을 제공합니다. <span class="highlight">노원구 이사 비용</span>을 절약하고 싶다면, 지역 전문가의 정확한 방문 견적을 받는 것이 첫걸음입니다.</p>
+
+            <h3>노원구 이사 환경의 주요 고려 사항</h3>
+            <ul>
+                <li><strong>대단지 아파트 이사:</strong> 상계동, 중계동, 하계동의 대단지 아파트는 엘리베이터 사용 예약이 필수이며, 주차 공간 확보나 이사 동선 관리가 중요합니다.</li>
+                <li><strong>빌라 및 주택가 이사:</strong> 공릉동, 월계동 일부 지역은 좁은 골목길로 인해 사다리차 접근이 어려울 수 있습니다. 이 경우, 인력 추가 투입이 필요하며 <span class="highlight">반포장이사</span>나 <span class="highlight">일반이사</span>를 고려하는 고객님들이 많습니다.</li>
+                <li><strong>손없는날 이사 수요 집중:</strong> 노원구는 학군과 주거 환경이 좋아 이사 수요가 많은 지역입니다. 특히 <span class="highlight">손없는날</span>에는 예약 경쟁이 치열하며, <span class="highlight">노원구 포장이사 가격</span>이 평소보다 10~20%가량 상승할 수 있습니다.</li>
+            </ul>
+
+            <div class="local-keywords">
+                <strong>노원구 관련 키워드:</strong>
+                <span>상계동 포장이사</span> <span>중계동 포장이사</span> <span>하계동 포장이사</span> <span>공릉동 이삿짐센터</span> <span>월계동 포장이사</span> <span>노원구 원룸이사</span> <span>노원구 반포장이사</span> <span>창동 포장이사</span> <span>도봉구 포장이사</span> <span>노원구 이사 견적</span> <span>상계동 주공아파트 이사</span> <span>중계동 학원가 이사</span> <span>노원구 사다리차</span> <span>손없는날 이사 비용</span> <span>노원구 이사 잘하는 곳</span>
+            </div>
+        </section>
+
+        <section id="서비스종류">
+            <h2>노원구 맞춤형 포장이사 서비스 종류</h2>
+            <p><strong>노원구 포장이사 견적 사이트</strong>에서는 고객님의 예산과 상황에 맞춰 다양한 이사 서비스를 제공합니다. <span class="highlight">포장이사, 반포장이사, 일반이사</span> 중 고객님에게 가장 적합한 서비스를 선택하세요. 각 서비스별 특징과 비용을 비교하여 합리적인 이사를 도와드립니다.</p>
+
+            <h3>1. 프리미엄 포장이사: 가장 편리한 서비스</h3>
+            <p>프리미엄 포장이사는 이사에 필요한 모든 과정을 <span class="highlight">이사 업체</span>가 책임지는 서비스입니다. 포장부터 운송, 정리, 청소까지 모든 것을 전문가가 진행하므로, 고객님은 이사 당일 편안하게 새 보금자리로 이동만 하시면 됩니다. 특히 짐이 많거나 이사 경험이 부족한 분들, <span class="highlight">노원구 대형 평수 이사</span>에 가장 적합한 서비스입니다.</p>
+            <ul>
+                <li><strong>특징:</strong> 짐 포장 및 운송, 도착지에서 짐 풀기, 정리 정돈, 바닥 보강재 설치, 가구 배치, 청소 서비스까지 포함됩니다.</li>
+                <li><strong>장점:</strong> 고객 만족도가 가장 높으며, 이사 준비에 대한 부담이 전혀 없습니다.</li>
+            </ul>
+
+            <h3>2. 반포장이사: 경제성과 편리성의 조화</h3>
+            <p>반포장이사는 <strong>노원구</strong>에서 <span class="highlight">원룸이사</span>나 <span class="highlight">소형 이사</span>를 하는 고객님들이 선호하는 서비스입니다. 업체가 큰 짐과 파손 우려가 있는 짐 위주로 포장하고 운송하며, 도착지에서는 고객님이 잔짐 정리를 직접 합니다. <span class="highlight">이사 비용</span>을 절약하면서도 운송의 편의성을 누릴 수 있습니다.</p>
+            <ul>
+                <li><strong>특징:</strong> 큰 가구, 가전제품 포장 및 운송은 업체 담당. 주방용품 및 잔짐 포장/정리는 고객 직접 담당.</li>
+                <li><strong>장점:</strong> 포장이사보다 저렴하며, 고객이 직접 필요한 짐만 정리할 수 있어 효율적입니다.</li>
+            </ul>
+
+            <h3>3. 일반이사: 최소 비용으로 최대 효과</h3>
+            <p>일반이사는 고객님이 직접 모든 짐을 포장하고, 업체는 운송과 큰 짐 배치를 돕는 서비스입니다. <span class="highlight">노원구 원룸이사</span>나 짐이 적은 <span class="highlight">1인 가구 이사</span>에 주로 이용됩니다. <span class="highlight">노원구 이사 비용</span>을 가장 크게 절약할 수 있지만, 고객의 노동력이 많이 필요합니다.</p>
+            <ul>
+                <li><strong>특징:</strong> 고객 직접 포장 및 정리. 운송 및 큰 가구 배치만 업체 담당.</li>
+                <li><strong>장점:</strong> 이사 비용이 가장 저렴합니다.</li>
+            </ul>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>서비스 종류</th>
+                        <th>포장</th>
+                        <th>운송</th>
+                        <th>정리 (도착지)</th>
+                        <th>가격대 (노원구 기준)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>포장이사</strong></td>
+                        <td>업체 담당</td>
+                        <td>업체 담당</td>
+                        <td>업체 담당</td>
+                        <td>가장 높음</td>
+                    </tr>
+                    <tr>
+                        <td><strong>반포장이사</strong></td>
+                        <td>일부 업체, 일부 고객</td>
+                        <td>업체 담당</td>
+                        <td>고객 담당</td>
+                        <td>중간</td>
+                    </tr>
+                    <tr>
+                        <td><strong>일반이사</strong></td>
+                        <td>고객 담당</td>
+                        <td>업체 담당</td>
+                        <td>고객 담당</td>
+                        <td>가장 낮음</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section id="비용분석">
+            <h2>노원구 포장이사 비용 상세 분석 (2026년 기준)</h2>
+            <p><strong>노원구 포장이사 비용</strong>은 단순히 평수만으로 결정되지 않습니다. <span class="highlight">노원구</span> 지역 특성상 <span class="highlight">아파트 층수</span>와 <span class="highlight">사다리차 사용 유무</span>, 이사 날짜, 짐의 양, 작업 인원 등 여러 요인이 복합적으로 작용합니다. <span class="highlight">2026년 노원구 포장이사 평균 비용</span>을 바탕으로 주요 변수를 분석하고, <span class="highlight">이사 비용 절약 팁</span>을 제공합니다.</p>
+
+            <h3>1. 비용에 영향을 미치는 주요 요인</h3>
+            <p>노원구 이사 비용은 다음과 같은 요인에 따라 변동 폭이 큽니다.</p>
+            <ul>
+                <li><strong>이사 평수 및 짐의 양:</strong> 짐이 많을수록, 평수가 클수록 작업 인원과 차량 대수가 증가하여 비용이 상승합니다. <span class="highlight">노원구 30평대 아파트 이사</span>의 경우 5톤 트럭을 기준으로 견적이 산출됩니다.</li>
+                <li><strong>이사 날짜:</strong> <span class="highlight">손없는날</span>(음력 9, 10, 19, 20, 29, 30일)은 이사 수요가 폭증하는 날로, 평소보다 15~30%의 추가 비용이 발생합니다. 주말이나 이사 성수기(봄, 가을)에도 비용이 상승하는 경향이 있습니다.</li>
+                <li><strong>이동 거리:</strong> <span class="highlight">노원구</span> 내에서 이동하는 <span class="highlight">단거리 이사</span>는 비교적 저렴하지만, 경기도나 타 지역으로 이동하는 <span class="highlight">장거리 이사</span>는 운송료가 추가됩니다.</li>
+                <li><strong>작업 환경 (층수 및 사다리차):</strong> <span class="highlight">노원구 아파트</span>의 경우 1층이 아닌 2층 이상부터는 사다리차 사용이 일반적입니다. <span class="highlight">사다리차 비용</span>은 층수에 따라 달라지며, 사다리차 진입이 불가능한 좁은 골목길(예: 공릉동 주택가)은 인력 추가 비용이 발생합니다.</li>
+                <li><strong>특수 작업:</strong> 에어컨 탈부착, 벽걸이 TV 설치, 돌침대 운반, 피아노 운반 등은 별도 비용이 발생할 수 있으므로, 견적 상담 시 반드시 고지해야 합니다.</li>
+            </ul>
+
+            <h3>2. 노원구 이사 비용 절약 노하우</h3>
+            <p><strong>노원구민</strong>이라면 다음과 같은 방법으로 <span class="highlight">포장이사 비용</span>을 절약할 수 있습니다.</p>
+            <ul>
+                <li><strong>이사 날짜 조정:</strong> <span class="highlight">손없는날</span>을 피하고 평일로 이사 날짜를 정하면 최소 10% 이상 비용을 줄일 수 있습니다.</li>
+                <li><strong>불필요한 짐 정리:</strong> 이사 전 짐을 미리 정리하여 짐의 양을 줄이면 차량 대수나 작업 인원이 줄어 비용이 절감됩니다.</li>
+                <li><strong>방문 견적 비교:</strong> 최소 3곳 이상의 <span class="highlight">노원구 이사 업체</span>로부터 <span class="highlight">방문 견적</span>을 받고, 서비스 내용과 비용을 꼼꼼히 비교합니다.</li>
+                <li><strong>반포장이사 고려:</strong> 짐이 적거나 정리할 시간이 충분하다면 <span class="highlight">반포장이사</span>를 선택하여 비용을 절약합니다.</li>
+            </ul>
+
+            <h3>3. 노원구 이사 서비스 만족도 비교 (2026년 통계)</h3>
+            <p>다음은 노원구에서 이사를 진행한 고객들의 서비스 만족도 비교 통계입니다. 포장이사의 만족도가 압도적으로 높음을 알 수 있습니다.</p>
+            <div class="chart-container">
+                <div class="chart-bar bar1">포장이사<div class="chart-label">만족도 90%</div></div>
+                <div class="chart-bar bar2">반포장이사<div class="chart-label">만족도 75%</div></div>
+                <div class="chart-bar bar3">일반이사<div class="chart-label">만족도 50%</div></div>
+            </div>
+        </section>
+
+        <section id="업체선택기준">
+            <h2>노원구 포장이사, 믿을 수 있는 업체 선택 기준 5가지</h2>
+            <p><strong>노원구 포장이사</strong>를 성공적으로 진행하기 위해서는 <span class="highlight">이사 업체</span>의 신뢰도가 가장 중요합니다. 잘못된 업체 선정은 이사 당일 추가 비용 문제, 짐 파손, AS 미흡 등 큰 스트레스로 이어질 수 있습니다. 다음은 <span class="highlight">노원구 포장이사 업체</span>를 선택할 때 반드시 확인해야 할 5가지 기준입니다.</p>
+
+            <h3>1. 관허업체 여부 확인 (필수)</h3>
+            <p><strong>이사 업체</strong>가 관청으로부터 정식 허가를 받은 <span class="highlight">관허업체</span>인지 확인해야 합니다. 무허가 업체는 피해보상 규정이 불분명하고, 이사 도중 문제가 발생했을 때 책임을 회피할 가능성이 높습니다. <span class="highlight">국토교통부</span>에서 운영하는 화물운송정보시스템을 통해 정식 허가 여부를 확인할 수 있습니다. 관허업체는 적재물 배상 책임 보험에 의무적으로 가입되어 있어, 고객의 짐 파손에 대한 보상을 확실히 받을 수 있습니다.</p>
+            <a href="https://www.ftc.go.kr/www/ne_notice/notice_view.do?key=25&state=view&ct=fta&seq=2376" target="_blank" rel="noopener noreferrer" class="external-link">공정거래위원회 이사화물 표준약관 확인하기</a>
+
+            <h3>2. 방문 견적 및 계약서 꼼꼼히 확인</h3>
+            <p>전화 견적만으로 계약하는 것은 위험합니다. <span class="highlight">노원구 이사 업체</span>를 선정할 때는 반드시 <span class="highlight">방문 견적</span>을 받고, 계약서를 서면으로 작성해야 합니다. 계약서에는 <span class="highlight">총 이사 비용</span>, <span class="highlight">추가 비용 발생 조건</span>, <span class="highlight">작업 인원 수</span>, <span class="highlight">이사 시간</span>, <span class="highlight">피해 보상 규정</span> 등을 명확하게 명시해야 합니다. 구두 계약은 법적 효력이 없어 문제가 발생했을 때 해결하기 어렵습니다.</p>
+            <a href="https://www.kca.go.kr/home/main.do" target="_blank" rel="noopener noreferrer" class="external-link">한국소비자원 피해 구제 정보 확인하기</a>
+
+            <h3>3. 이사 전문 인력 확인</h3>
+            <p>이사는 단순히 짐을 옮기는 것이 아닌, 포장과 정리에 숙련된 기술이 필요한 전문 작업입니다. <span class="highlight">노원구 포장이사</span> 업체를 선택할 때 해당 업체가 자체적으로 전문 인력을 고용하고 있는지, 혹은 일용직 노동자를 쓰는지 확인해야 합니다. 숙련된 전문가로 구성된 팀은 파손 위험을 최소화하고 이사 시간을 단축시켜줍니다.</p>
+
+            <h3>4. 서비스 범위와 특약 사항 점검</h3>
+            <p>제공되는 서비스 범위를 명확히 확인해야 합니다. <span class="highlight">포장이사</span>라고 해도 업체마다 청소 서비스의 범위나 짐 정리 수준이 다를 수 있습니다. 특히 에어컨 탈부착, 벽걸이 TV 설치 등 특수 작업이 필요한 경우, 해당 작업이 서비스에 포함되는지, 혹은 별도 비용이 발생하는지 미리 확인해야 합니다.</p>
+
+            <h3>5. 이사 후기 및 평판 확인</h3>
+            <p>온라인 후기나 <span class="highlight">노원구 이사 업체 추천</span> 글을 참고하여 업체의 평판을 확인합니다. 다만, 광고성 후기에 의존하기보다는, 실제 이사를 진행한 고객들의 솔직한 후기를 여러 경로로 확인하는 것이 좋습니다.</p>
+            <a href="https://namu.wiki/w/%ED%8F%AC%EC%9E%A5%EC%9D%B4%EC%82%AC" target="_blank" rel="noopener noreferrer" class="external-link">포장이사 관련 정보 (Namuwiki)</a>
+        </section>
+
+        <section id="자주묻는질문" class="faq-accordion">
+            <h2>자주 묻는 질문 (노원구 이사 Q&A)</h2>
+            <dl>
+                <dt tabindex="0" aria-expanded="false"><strong>Q. 노원구 포장이사 비용은 얼마나 드나요?</strong></dt>
+                <dd><strong>노원구 포장이사 비용</strong>은 짐의 양, 이사 거리, 이사 날짜(손없는날, 주말 여부), 작업 인원, 사다리차 사용 유무 등 다양한 요인에 따라 달라집니다. <span class="highlight">노원구 24평 아파트</span> 기준 5톤 포장이사 비용은 평일 110~150만원, <span class="highlight">손없는날</span> 140~180만원 선으로 형성됩니다. 정확한 비용은 반드시 방문 견적을 통해 확인하는 것이 좋습니다.</dd>
+
+                <dt tabindex="0" aria-expanded="false"><strong>Q. 노원구에서 손없는날 이사 비용이 비싼 이유는 무엇인가요?</strong></dt>
+                <dd><strong>손없는날</strong>은 '악귀가 없는 날'로 이사하면 길하다는 속설 때문에 이사 수요가 집중됩니다. <span class="highlight">노원구</span>처럼 이사 수요가 많은 지역에서는 수요와 공급의 법칙에 따라 <span class="highlight">이사 비용</span>이 급격하게 상승합니다. 비용 절감을 원한다면 손없는날을 피하여 평일이나 이사 비수기에 이사하는 것을 추천합니다.
+                <a href="https://ko.wikipedia.org/wiki/%EC%86%90%EC%97%86%EB%8A%94%EB%82%A0" target="_blank" rel="noopener noreferrer" class="external-link">손없는날의 유래 및 정의 (Wikipedia)</a>
+                </dd>
+
+                <dt tabindex="0" aria-expanded="false"><strong>Q. 방문 견적 시 꼭 확인해야 할 사항은 무엇인가요?</strong></dt>
+                <dd>방문 견적 시 이사할 집의 <span class="highlight">노원구 지역</span> 환경(계단 수, 엘리베이터 유무), 짐의 양, 사다리차 진입 가능 여부를 꼼꼼히 확인하세요. 특히 <span class="highlight">노원구 상계동</span>이나 <span class="highlight">중계동</span>처럼 오래된 아파트는 짐 운반 시 특이 사항이 있을 수 있습니다. 계약서에 <span class="highlight">추가 비용 발생 조건</span>을 명확히 명시하고, <span class="highlight">피해 보상 규정</span>을 확인해야 합니다.</dd>
+
+                <dt tabindex="0" aria-expanded="false"><strong>Q. 이사 중 짐 파손 시 보상은 어떻게 받나요?</strong></dt>
+                <dd>정식 <span class="highlight">관허업체</span>와 계약하셨다면, <span class="highlight">적재물 배상 책임 보험</span>에 따라 보상받을 수 있습니다. 파손이나 분실이 발생하면 즉시 현장에서 이사 팀장에게 알리고, 사진이나 동영상 등 증거 자료를 확보하는 것이 중요합니다. 이사 후 발견 시에는 이사한 날로부터 7일 이내에 업체에 통보해야 합니다.</dd>
+
+                <dt tabindex="0" aria-expanded="false"><strong>Q. 노원구 원룸이사도 포장이사가 가능한가요?</strong></dt>
+                <dd>네, <span class="highlight">노원구</span> 지역의 <span class="highlight">원룸이사</span>를 위한 맞춤형 <span class="highlight">포장이사</span> 서비스도 제공됩니다. 짐의 양이 적을 경우 1톤 차량으로도 충분하며, 비용 절약을 원하시면 <span class="highlight">반포장이사</span>를 선택할 수도 있습니다. <span class="highlight">상계동 원룸촌</span>이나 <span class="highlight">공릉동</span> 지역의 <span class="highlight">소형 이사</span>도 전문적으로 진행하고 있습니다.</dd>
+                <a href="https://www.law.go.kr/lsInfoP.do?lsiSeq=230635&efYd=20200805#0000" target="_blank" rel="noopener noreferrer" class="external-link">이사화물 표준약관 (법제처)</a>
+            </dl>
+        </section>
+
+        <section id="무료견적">
+            <h2>노원구 포장이사 무료 견적 신청</h2>
+            <p><strong>노원구 포장이사</strong>, 합리적인 비용으로 안전하게 시작하세요. 아래 신청서를 작성해 주시면 <span class="highlight">노원구</span> 지역 전문 <span class="highlight">이사 업체</span>들의 경쟁 견적을 무료로 비교해 드립니다. <span class="highlight">노원구 상계동, 중계동, 하계동, 공릉동</span> 등 상세 지역 맞춤형 견적을 받아보세요.</p>
+            <div class="quote-form-container">
+                <h3>노원구 이사 무료 견적 신청서</h3>
+                <form action="#" method="post">
+                    <div>
+                        <label for="name">이름:</label>
+                        <input type="text" id="name" name="name" placeholder="고객님의 성함을 입력해주세요." required>
+                    </div>
+                    <div>
+                        <label for="phone">연락처:</label>
+                        <input type="tel" id="phone" name="phone" placeholder="예: 010-1234-5678" required>
+                    </div>
+                    <div>
+                        <label for="date">이사 희망 날짜:</label>
+                        <input type="date" id="date" name="date" required>
+                    </div>
+                    <div>
+                        <label for="move_type">이사 종류:</label>
+                        <select id="move_type" name="move_type" required>
+                            <option value="">선택</option>
+                            <option value="포장이사">프리미엄 포장이사</option>
+                            <option value="반포장이사">반포장이사</option>
+                            <option value="일반이사">일반이사</option>
+                            <option value="원룸이사">원룸이사</option>
+                            <option value="사무실이사">사무실이사</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="start_address">출발지 (노원구 내 지역):</label>
+                        <input type="text" id="start_address" name="start_address" placeholder="예: 노원구 상계동 00아파트 101동 101호" required>
+                    </div>
+                    <div>
+                        <label for="end_address">도착지 (지역):</label>
+                        <input type="text" id="end_address" name="end_address" placeholder="예: 서울시 강남구 00아파트" required>
+                    </div>
+                    <div>
+                        <label for="square_meter">평수/짐의 양:</label>
+                        <input type="text" id="square_meter" name="square_meter" placeholder="예: 30평, 5톤 기준" required>
+                    </div>
+                    <div>
+                        <label for="memo">기타 요청사항 (추가 짐, 특수 물품 등):</label>
+                        <textarea id="memo" name="memo" rows="4" placeholder="에어컨 탈부착, 벽걸이 TV 설치, 돌침대 유무 등 특이사항을 기재해주세요."></textarea>
+                    </div>
+                    <button type="submit">무료 견적 신청 완료</button>
+                </form>
+            </div>
+        </section>
+        
+        <section id="추가정보">
+            <h2>노원구 이사 체크리스트 및 추가 정보</h2>
+            <p><strong>노원구 포장이사</strong>를 성공적으로 마무리하기 위한 몇 가지 추가 팁입니다. 이사 당일 혼란을 줄이고 빠짐없이 준비할 수 있도록 <span class="highlight">이사 체크리스트</span>를 확인하세요.</p>
+            <h3>1. 이사 1~2주 전 체크리스트</h3>
+            <ul>
+                <li><strong>이사 업체 선정 완료:</strong> 견적 비교 후 최종 계약서를 작성합니다.</li>
+                <li><strong>전입/전출 신고:</strong> 동사무소 또는 정부24에서 전입/전출 신고를 미리 합니다.</li>
+                <li><strong>공과금 정산:</strong> 가스, 전기, 수도 요금을 정산하고 도시가스 연결을 예약합니다.</li>
+                <li><strong>우편물 주소 변경:</strong> 우체국에서 주소 이전 서비스를 신청하여 우편물 누락을 방지합니다.</li>
+                <li><strong>냉장고 정리:</strong> 냉장고 내부 음식물을 정리하고 성에를 제거합니다.</li>
+            </ul>
+            <h3>2. 이사 당일 체크리스트</h3>
+            <ul>
+                <li><strong>귀중품 직접 보관:</strong> 현금, 통장, 인감, 보석 등 귀중품은 고객이 직접 챙깁니다.</li>
+                <li><strong>이사 업체 최종 점검:</strong> 작업 인원수, 차량 종류, 시작 시간을 다시 한번 확인합니다.</li>
+                <li><strong>이사 동선 확보:</strong> 아파트의 경우 엘리베이터 사용 예약 시간과 주차 공간을 확보합니다.</li>
+            </ul>
+            <h3>3. 이사 후 체크리스트</h3>
+            <ul>
+                <li><strong>전입신고 및 확정일자:</strong> 전입신고 후 임대차 계약서에 확정일자를 받아야 법적 보호를 받을 수 있습니다.</li>
+                <li><strong>이사 짐 정리 점검:</strong> 파손된 물건이나 분실된 물건이 없는지 확인하고 문제가 있다면 즉시 업체에 연락합니다.</li>
+                <li><strong>청소 및 정리:</strong> 전문 입주 청소를 진행하지 않았다면 짐 정리 후 청소를 진행합니다.</li>
+            </ul>
+            <a href="https://www.gov.kr/main?a=movinForm" target="_blank" rel="noopener noreferrer" class="external-link">정부24 전입신고 서비스</a>
+        </section>
     </main>
-  </body>
-</html>
+
+    <footer>
+        <p><strong>노원구 포장이사 견적 비교 센터</strong> | Copyright &copy; 2026. All Rights Reserved.</p>
+        <p>주소: 서울특별시 노원구 (가상 주소) | 문의: 050-1234-5678 | 이메일: contact@yourdomain.com</p>
+    </footer>
+
+    <script>
+        // FAQ 아코디언 기능 (접기/펼치기)
+        document.querySelectorAll('dl dt').forEach((dt) => {
+            dt.addEventListener('click', () => {
+                const expanded = dt.getAttribute('aria-expanded') === 'true' || false;
+                dt.setAttribute('aria-expanded', !expanded);
+                dt.classList.toggle('active');
+            });
+            dt.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    dt.click();
+                }
+            });
+        });
+    </script>
+
+  
